@@ -1,0 +1,208 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  background: #d8dcd5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* Container for Toolbar and Canvas */
+.app-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+/* Toolbar Styles */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 250px;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tool label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+input[type="color"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Brush Type Dropdown */
+.brush-dropdown {
+  position: relative;
+}
+
+#brush-dropdown-btn {
+  background-color: #6200ea;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+#brush-dropdown-btn span {
+  margin-left: 10px;
+}
+
+#brush-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.brush-option {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.brush-option:hover {
+  background-color: #f0f0f0;
+}
+
+.brush-icon {
+  margin-right: 10px;
+}
+
+#brush-dropdown-btn:focus + #brush-dropdown-content {
+  display: block;
+}
+
+/* Tool Buttons with Neon Shape */
+.tool-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.shape-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00ff00; /* Neon Green */
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px 2px #00ff00; /* Neon glow */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.shape-btn:hover {
+  background-color: #ff00ff; /* Neon Pink */
+  box-shadow: 0 0 20px 4px #ff00ff; /* Neon Pink Glow */
+  transform: scale(1.1);
+}
+
+.shape-btn:active {
+  transform: scale(0.95);
+}
+
+/* Canvas Styles */
+#paint-canvas {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  width: 800px;
+  height: 600px;
+  cursor: crosshair;
+  border-radius: 10px;
+}
+
+/* Dropdown styling */
+.brush-dropdown {
+  position: relative;
+}
+
+#brush-dropdown-btn {
+  background-color: #6200ea;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+#brush-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.brush-option {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.brush-option:hover {
+  background-color: #f0f0f0;
+}
+
+.brush-icon {
+  margin-right: 10px;
+}
+
+#brush-dropdown-btn:focus + #brush-dropdown-content {
+  display: block;
+}
