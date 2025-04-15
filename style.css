@@ -3,51 +3,57 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+  font-family: "Roboto", sans-serif; /* More modern font */
 }
 
 body {
-  background: #d8dcd5;
+  background: #f0f2f5; /* Light background with subtle gradient for a clean look */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   flex-direction: column;
+  font-size: 14px;
 }
 
 /* Container for Toolbar and Canvas */
 .app-container {
   display: flex;
-  flex-direction: column; /* Change the layout to column */
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
   background-color: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  width: 100%; /* Ensure full width */
-  max-width: 1200px; /* Optional: Limit the max width */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Soft, futuristic shadow */
+  border-radius: 20px; /* Rounded corners for a softer look */
+  width: 100%;
+  max-width: 1200px;
+  transition: transform 0.3s ease; /* Smooth hover transition */
+}
+
+.app-container:hover {
+  transform: scale(1.02); /* Slight scale effect for a hover feel */
 }
 
 /* Toolbar Styles */
 .toolbar {
   display: flex;
-  flex-direction: row; /* Change from column to row */
+  flex-direction: row;
   gap: 20px;
   width: 100%;
   padding: 20px;
-  background: #eae8e5;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  justify-content: space-between; /* Distribute space evenly */
-  align-items: center; /* Align items vertically in the middle */
+  background: linear-gradient(135deg, #e0e0e0, #ffffff); /* Gradient background */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Tool Buttons Layout */
 .tool-buttons-left,
 .tool-buttons-right {
   display: flex;
-  flex-direction: row; /* Change from column to row */
-  gap: 15px;
+  flex-direction: row;
+  gap: 20px;
 }
 
 /* Shape Button Styles */
@@ -55,113 +61,59 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
-  color: #aaa;
+  background-color: #e4e4e4;
+  color: #333;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   font-size: 22px;
   cursor: pointer;
   border: 2px solid #ddd;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transitions */
 }
 
 .shape-btn:hover {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #d1d1d1; /* Slightly darker background on hover */
+  color: #000;
+  transform: scale(1.1); /* Slight zoom effect */
 }
 
 .shape-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.95); /* Button press effect */
 }
 
 .shape-btn span {
   font-size: 20px;
 }
 
-/* Undo Button */
-#undo {
-  border-color: #007bff;
-  color: #007bff;
-}
-
-#undo:hover {
-  background-color: #e6f0ff;
-  color: #0056b3;
-}
-
-/* Redo Button */
+/* Undo/Redo Buttons */
+#undo,
 #redo {
-  border-color: #28a745;
-  color: #28a745;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+#undo:hover,
 #redo:hover {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #c5c5c5; /* Hover effect for Undo/Redo */
 }
 
-/* Apply icons to undo and redo buttons */
-#undo::before {
-  content: '\2190'; /* Unicode for left arrow */
-}
-
-#redo::before {
-  content: '\2192'; /* Unicode for right arrow */
-}
-
-/* Shape Drawing Buttons */
-#draw-rectangle {
-  border-color: #f39c12;
-  color: #f39c12;
-}
-
-#draw-circle {
-  border-color: #e74c3c;
-  color: #e74c3c;
-}
-
-#draw-triangle {
-  border-color: #2ecc71;
-  color: #2ecc71;
-}
-
-/* Canvas Styles */
-#paint-canvas {
-  background-color: #ffffff;
-  border: 2px solid #000000;
-  width: 800px;
-  height: 600px;
-  cursor: crosshair;
-  border-radius: 10px;
-}
-
-/* Input and Range Styles */
-input[type="range"],
-input[type="color"] {
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background-color: #f1f1f1;
-  transition: border-color 0.3s ease;
-}
-
-input[type="range"] {
-  height: 6px;
-}
-
-input[type="color"] {
-  height: 30px;
+#undo:active,
+#redo:active {
+  transform: scale(0.95);
 }
 
 /* Brush Type Dropdown */
-.brush-dropdown {
-  position: relative;
-}
-
 #brush-dropdown-btn {
-  background-color: #4caf50;
+  background-color: #6200ea;
   color: white;
   padding: 12px;
   border-radius: 8px;
@@ -171,23 +123,30 @@ input[type="color"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: relative; /* Added to allow absolute positioning of the dropdown */
 }
 
 #brush-dropdown-btn:hover {
-  background-color: #45a049;
+  background-color: #3700b3;
 }
 
 #brush-dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;
+  bottom: 100%; /* Position it directly above the button */
   left: 0;
   width: 100%;
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  z-index: 1;
+  z-index: 999; /* Ensure the dropdown appears on top of other elements */
+  padding: 5px 0;
+}
+
+#brush-dropdown-btn:hover + #brush-dropdown-content,
+#brush-dropdown-btn:focus + #brush-dropdown-content {
+  display: block;
 }
 
 .brush-option {
@@ -203,38 +162,38 @@ input[type="color"] {
   background-color: #f0f0f0;
 }
 
-.brush-icon {
-  margin-right: 10px;
+/* Canvas Styles */
+#paint-canvas {
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  width: 800px;
+  height: 600px;
+  cursor: crosshair;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
-#brush-dropdown-btn:focus + #brush-dropdown-content {
-  display: block;
+#paint-canvas:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow when hovered */
 }
 
-/* Button and Dropdown Styling */
-button,
-input[type="button"] {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  border: none;
+/* Input and Range Styles */
+input[type="range"],
+input[type="color"] {
+  width: 100%;
   padding: 10px;
-  cursor: pointer;
   border-radius: 8px;
-  background-color: #6200ea;
-  color: white;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease;
 }
 
-button:hover,
-input[type="button"]:hover {
-  background-color: #3700b3;
-  transform: scale(1.05);
+input[type="range"] {
+  height: 8px;
 }
 
-button:active,
-input[type="button"]:active {
-  transform: scale(0.95);
+input[type="color"] {
+  height: 30px;
 }
 
 /* Eraser Button */
@@ -255,4 +214,276 @@ input[type="button"]:active {
 /* Apply eraser icon */
 #eraser::before {
   content: '\1F5D1'; /* Unicode for wastebasket */
+}
+
+/* Button and Dropdown Styling */
+button,
+input[type="button"] {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #6200ea;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+input[type="button"]:hover {
+  background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+button:active,
+input[type="button"]:active {
+  transform: scale(0.95);
+}
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif; /* More modern font */
+}
+
+body {
+  background: #f0f2f5; /* Light background with subtle gradient for a clean look */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+/* Container for Toolbar and Canvas */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Soft, futuristic shadow */
+  border-radius: 20px; /* Rounded corners for a softer look */
+  width: 100%;
+  max-width: 1200px;
+  transition: transform 0.3s ease; /* Smooth hover transition */
+}
+
+.app-container:hover {
+  transform: scale(1.02); /* Slight scale effect for a hover feel */
+}
+
+/* Toolbar Styles */
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #e0e0e0, #ffffff); /* Gradient background */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Tool Buttons Layout */
+.tool-buttons-left,
+.tool-buttons-right {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+/* Shape Button Styles */
+.shape-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e4e4;
+  color: #333;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+.shape-btn:hover {
+  background-color: #d1d1d1; /* Slightly darker background on hover */
+  color: #000;
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.shape-btn:active {
+  transform: scale(0.95); /* Button press effect */
+}
+
+.shape-btn span {
+  font-size: 20px;
+}
+
+/* Undo/Redo Buttons */
+#undo,
+#redo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#undo:hover,
+#redo:hover {
+  background-color: #c5c5c5; /* Hover effect for Undo/Redo */
+}
+
+#undo:active,
+#redo:active {
+  transform: scale(0.95);
+}
+
+/* Brush Type Dropdown */
+#brush-dropdown-btn {
+  background-color: #6200ea;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: relative; /* Ensures that the dropdown is positioned relative to this button */
+}
+
+#brush-dropdown-btn:hover {
+  background-color: #3700b3;
+}
+
+#brush-dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 100%; /* Position it directly above the button */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 999; /* Ensure the dropdown appears on top of other elements */
+  padding: 5px 0;
+  visibility: hidden; /* Start with hidden visibility */
+}
+
+#brush-dropdown-btn:hover + #brush-dropdown-content,
+#brush-dropdown-btn:focus + #brush-dropdown-content {
+  display: block;
+  visibility: visible; /* Make sure it's visible when hovered or focused */
+}
+
+
+.brush-option {
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.brush-option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Canvas Styles */
+#paint-canvas {
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  width: 800px;
+  height: 600px;
+  cursor: crosshair;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+#paint-canvas:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow when hovered */
+}
+
+/* Input and Range Styles */
+input[type="range"],
+input[type="color"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease;
+}
+
+input[type="range"] {
+  height: 8px;
+}
+
+input[type="color"] {
+  height: 30px;
+}
+
+/* Eraser Button */
+#eraser {
+  border-color: #f39c12;
+  color: #f39c12;
+}
+
+#eraser:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+#eraser:active {
+  transform: scale(0.95);
+}
+
+/* Apply eraser icon */
+#eraser::before {
+  content: '\1F5D1'; /* Unicode for wastebasket */
+}
+
+/* Button and Dropdown Styling */
+button,
+input[type="button"] {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #6200ea;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+input[type="button"]:hover {
+  background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+button:active,
+input[type="button"]:active {
+  transform: scale(0.95);
 }

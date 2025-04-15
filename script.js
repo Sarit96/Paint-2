@@ -26,7 +26,7 @@ let redoStack = [];
 const updateBrushSettings = () => {
   ctx.lineWidth = brushSize;
   ctx.strokeStyle = brushColor;
-  ctx.setLineDash([]);
+  ctx.setLineDash([]);  // Reset brush pattern
   ctx.globalAlpha = 1;
   ctx.filter = "none";
   ctx.globalCompositeOperation = "source-over";
@@ -74,6 +74,7 @@ document.getElementById("color-picker").addEventListener("input", function () {
   brushColor = this.value;
 });
 
+// Handle brush type selection from dropdown
 document.querySelectorAll(".brush-option").forEach((option) => {
   option.addEventListener("click", function () {
     brushType = this.getAttribute("data-type");
@@ -82,10 +83,23 @@ document.querySelectorAll(".brush-option").forEach((option) => {
   });
 });
 
-document.getElementById("brush-dropdown-btn").addEventListener("click", function () {
+// Handle brush dropdown button click to toggle visibility
+document.getElementById("brush-dropdown-btn").addEventListener("click", function (e) {
   const content = document.getElementById("brush-dropdown-content");
   content.style.display = content.style.display === "block" ? "none" : "block";
+  e.stopPropagation(); // Prevent event propagation to the document
 });
+
+// Close the dropdown if clicked outside of it
+document.addEventListener("click", function (e) {
+  const content = document.getElementById("brush-dropdown-content");
+  const button = document.getElementById("brush-dropdown-btn");
+  if (!button.contains(e.target) && !content.contains(e.target)) {
+    content.style.display = "none";
+    content.style.visibility = "hidden"; // Hide the dropdown properly when clicking outside
+  }
+});
+
 
 // Drawing logic
 canvas.addEventListener("mousedown", (e) => {
