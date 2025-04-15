@@ -9,6 +9,20 @@
   <body>
     <div class="app-container">
       <div class="toolbar">
+        <!-- Tool Buttons with Shapes (Left) -->
+        <div class="tool-buttons-left">
+          <div class="section-title">Shapes</div>
+          <div class="shape-btn" id="draw-rectangle">
+            <span>□</span> <!-- Rectangle -->
+          </div>
+          <div class="shape-btn" id="draw-circle">
+            <span>○</span> <!-- Circle -->
+          </div>
+          <div class="shape-btn" id="draw-triangle">
+            <span>△</span> <!-- Triangle -->
+          </div>
+        </div>
+
         <!-- Brush Type Selection -->
         <div class="tool">
           <label for="brush-selection">Brush Types</label>
@@ -46,6 +60,10 @@
           </div>
         </div>
 
+        <div class="shape-btn" id="eraser">
+            <span></span> <!-- Eraser Rubber Icon -->
+        </div>
+
         <!-- Brush Size -->
         <div class="tool">
           <label for="brush-size">Brush Size</label>
@@ -64,23 +82,20 @@
           <input type="color" id="bg-color-picker" value="#ffffff" />
         </div>
 
-        <!-- Tool Buttons with Shapes -->
-        <div class="tool-buttons">
+        <!-- Tool Buttons for Undo, Redo, Clear, Save (Right) -->
+        <div class="tool-buttons-right">
+          <div class="section-title">Tools</div>
           <div class="shape-btn" id="undo">
-            <span>←</span>
-            <!-- Undo Icon -->
+            <span>←</span> <!-- Undo Icon -->
           </div>
           <div class="shape-btn" id="redo">
-            <span>→</span>
-            <!-- Redo Icon -->
+            <span>→</span> <!-- Redo Icon -->
           </div>
           <div class="shape-btn" id="clear-canvas">
-            <span>🧹</span>
-            <!-- Clear Icon -->
+            <span>🧹</span> <!-- Clear Icon -->
           </div>
           <div class="shape-btn" id="save-canvas">
-            <span>💾</span>
-            <!-- Save Icon -->
+            <span>💾</span> <!-- Save Icon -->
           </div>
         </div>
       </div>
