@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modern Paint App</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Additional CSS for the color swatches */
+      .color-swatch {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        margin: 0 8px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        vertical-align: middle;
+      }
+    </style>
   </head>
   <body>
     <div class="app-container">
@@ -30,38 +42,21 @@
             <button id="brush-dropdown-btn">Brush <span>&#x25BC;</span></button>
             <div id="brush-dropdown-content" class="brush-dropdown-content">
               <div class="brush-option" data-type="brush">
-                <span class="brush-icon">&#x1F58C;</span> Brush
+                <span class="brush-icon">&#x1F58C;</span>Paint Brush
               </div>
               <div class="brush-option" data-type="calligraphy">
-                <span class="brush-icon">&#x270D;</span> Calligraphy Brush
+                <span class="brush-icon">&#x270D;</span> Calligraphy
               </div>
               <div class="brush-option" data-type="pen">
                 <span class="brush-icon">&#x270F;</span> Calligraphy Pen
-              </div>
-              <div class="brush-option" data-type="airbrush">
-                <span class="brush-icon">&#x1F58B;</span> Airbrush
-              </div>
-              <div class="brush-option" data-type="oil">
-                <span class="brush-icon">&#x1F58C;</span> Oil Brush
-              </div>
-              <div class="brush-option" data-type="crayon">
-                <span class="brush-icon">&#x1F58D;</span> Crayon
-              </div>
-              <div class="brush-option" data-type="marker">
-                <span class="brush-icon">&#x1F58A;</span> Marker
-              </div>
-              <div class="brush-option" data-type="pencil">
-                <span class="brush-icon">&#x270F;</span> Natural Pencil
-              </div>
-              <div class="brush-option" data-type="watercolor">
-                <span class="brush-icon">&#x1F4D8;</span> Watercolor Brush
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Eraser Button -->
         <div class="shape-btn" id="eraser">
-            <span></span> <!-- Eraser Rubber Icon -->
+          <span></span> <!-- Eraser Icon (toggles via CSS) -->
         </div>
 
         <!-- Brush Size -->
@@ -70,15 +65,17 @@
           <input type="range" id="brush-size" min="1" max="20" value="5" />
         </div>
 
-        <!-- Brush Color -->
+        <!-- Brush Color with Swatch -->
         <div class="tool">
           <label for="color-picker">Brush Color</label>
+          <div id="brush-color-swatch" class="color-swatch"></div>
           <input type="color" id="color-picker" value="#000000" />
         </div>
 
-        <!-- Background Color -->
+        <!-- Background Color with Swatch -->
         <div class="tool">
           <label for="bg-color-picker">Background Color</label>
+          <div id="bg-color-swatch" class="color-swatch"></div>
           <input type="color" id="bg-color-picker" value="#ffffff" />
         </div>
 
@@ -104,6 +101,7 @@
       <canvas id="paint-canvas"></canvas>
     </div>
 
+    <!-- Script is assumed to be in script.js -->
     <script src="script.js"></script>
   </body>
 </html>
