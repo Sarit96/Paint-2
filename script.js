@@ -15,8 +15,9 @@ canvas.height = 600;
 let isDrawing = false;
 let isShapeDrawing = false;
 let isEraserMode = false;
-let shapeType = '';
-let startX = 0, startY = 0;
+let shapeType = "";
+let startX = 0,
+  startY = 0;
 let savedImageData = null; // For shape preview
 
 // Undo/Redo stacks
@@ -38,7 +39,7 @@ const updateBrushSettings = () => {
   ctx.strokeStyle = brushColor;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  ctx.setLineDash([]);  // Reset any brush patterns
+  ctx.setLineDash([]); // Reset any brush patterns
   ctx.globalAlpha = 1;
   ctx.filter = "none";
   ctx.globalCompositeOperation = "source-over";
@@ -73,11 +74,13 @@ const brushPatterns = {
 };
 
 // Event listener for background color picker: update canvas bg and swatch
-document.getElementById("bg-color-picker").addEventListener("input", function () {
-  backgroundColor = this.value;
-  canvas.style.backgroundColor = backgroundColor;
-  bgColorSwatch.style.backgroundColor = backgroundColor;
-});
+document
+  .getElementById("bg-color-picker")
+  .addEventListener("input", function () {
+    backgroundColor = this.value;
+    canvas.style.backgroundColor = backgroundColor;
+    bgColorSwatch.style.backgroundColor = backgroundColor;
+  });
 
 // Event listener for brush size
 document.getElementById("brush-size").addEventListener("input", function () {
@@ -102,17 +105,19 @@ document.querySelectorAll(".brush-option").forEach((option) => {
 });
 
 // Toggle brush dropdown visibility
-document.getElementById("brush-dropdown-btn").addEventListener("click", function (e) {
-  const content = document.getElementById("brush-dropdown-content");
-  if (content.style.display === "block") {
-    content.style.display = "none";
-    content.style.visibility = "hidden";
-  } else {
-    content.style.display = "block";
-    content.style.visibility = "visible";
-  }
-  e.stopPropagation();
-});
+document
+  .getElementById("brush-dropdown-btn")
+  .addEventListener("click", function (e) {
+    const content = document.getElementById("brush-dropdown-content");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      content.style.visibility = "hidden";
+    } else {
+      content.style.display = "block";
+      content.style.visibility = "visible";
+    }
+    e.stopPropagation();
+  });
 document.addEventListener("click", function (e) {
   const content = document.getElementById("brush-dropdown-content");
   const button = document.getElementById("brush-dropdown-btn");
@@ -126,7 +131,7 @@ document.addEventListener("click", function (e) {
 canvas.addEventListener("mousedown", (e) => {
   startX = e.offsetX;
   startY = e.offsetY;
-  
+
   // Save state for undo and shape preview
   if (!shapeType) {
     isDrawing = true;
@@ -144,7 +149,7 @@ canvas.addEventListener("mousemove", (e) => {
     ctx.putImageData(savedImageData, 0, 0);
     const width = e.offsetX - startX;
     const height = e.offsetY - startY;
-    
+
     ctx.beginPath();
     updateBrushSettings();
     // Use the chosen brush pattern if any
@@ -166,7 +171,7 @@ canvas.addEventListener("mousemove", (e) => {
   } else if (isDrawing) {
     updateBrushSettings();
     if (brushPatterns[brushType]) brushPatterns[brushType]();
-    
+
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.lineTo(e.offsetX, e.offsetY);
@@ -181,7 +186,7 @@ canvas.addEventListener("mouseup", (e) => {
     // Commit the drawn shape by pushing the new state to undo
     undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
     isShapeDrawing = false;
-    shapeType = '';
+    shapeType = "";
   } else if (isDrawing) {
     isDrawing = false;
   }
